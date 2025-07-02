@@ -1,0 +1,520 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap');
+/* Removed Audiowide and Oxanium fonts as they are no longer used */
+
+/* stylelint-disable at-rule-no-unknown */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* stylelint-enable at-rule-no-unknown */
+
+@layer base {
+  body {
+    background-color: #0d002a; /* Fallback background color */
+    background-image: url('/20250617_1219_Cyberpunk Neon Future_simple_compose_01jxyaabg6e1prnb9g4bqqyndp.png'); /* Background image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Ensures background stays fixed during scroll */
+    color: #ffffff;
+    font-family: 'Chakra Petch', sans-serif;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(13, 0, 42, 0.05); /* Reduced dark overlay opacity even further */
+    z-index: -1; /* Place it behind content but above background image */
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Rubik Glitch Static', cursive;
+    letter-spacing: 0.1em;
+  }
+}
+
+@layer components {
+  .neon-button-pink {
+    @apply px-4 py-2 font-bold tracking-wider uppercase;
+    background: linear-gradient(90deg, var(--neon-pink) 0%, var(--neon-purple) 100%);
+    color: white;
+    border: 2px solid var(--neon-pink);
+    border-radius: 0.5rem;
+    box-shadow: 0 0 8px var(--neon-pink), 0 0 16px var(--neon-purple);
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Orbitron', sans-serif;
+  }
+
+  .neon-button-pink:hover {
+    background: linear-gradient(90deg, var(--neon-purple) 0%, var(--neon-blue) 100%);
+    border-color: var(--neon-blue);
+    box-shadow: 0 0 24px var(--neon-blue), 0 0 48px var(--neon-purple);
+    transform: scale(1.05);
+  }
+
+  .cyber-button-border {
+    @apply px-4 py-2 font-bold tracking-wider uppercase;
+    background: transparent;
+    color: white;
+    border: 2px solid var(--neon-blue);
+    box-shadow: 0 0 8px var(--neon-blue), 0 0 16px var(--neon-pink);
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Orbitron', sans-serif;
+  }
+
+  .cyber-button-border:hover {
+    background: linear-gradient(90deg, rgba(var(--neon-blue-rgb), 0.2) 0%, rgba(var(--neon-pink-rgb), 0.2) 100%);
+    box-shadow: 0 0 15px var(--neon-blue), 0 0 30px var(--neon-pink);
+    transform: scale(1.05);
+  }
+
+  .cyber-card {
+    @apply p-4 shadow-lg rounded-lg;
+    background-color: rgba(10, 0, 30, 0.7);
+    position: relative;
+    border: 2px solid transparent; /* Set a transparent border initially */
+    box-shadow: none; /* Remove default shadow */
+    background-clip: padding-box; /* Ensure background doesn't go under the border */
+    z-index: 1;
+  }
+
+  .cyber-card::before {
+    content: '';
+    position: absolute;
+    top: -2px; /* Adjust for border width */
+    left: -2px; /* Adjust for border width */
+    right: -2px; /* Adjust for border width */
+    bottom: -2px; /* Adjust for border width */
+    border-radius: 0.5rem; /* Match parent border-radius */
+    border: 2px solid transparent;
+    background: linear-gradient(to bottom right, var(--neon-blue), var(--neon-pink)) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    z-index: -1;
+    box-shadow: 0 0 15px rgba(var(--neon-blue-rgb), 0.7), 0 0 30px rgba(var(--neon-pink-rgb), 0.7);
+    transform: none; /* Remove skew */
+  }
+
+  .cyber-card::after {
+    /* Remove the second pseudo-element if it's not needed for the new design */
+    content: none;
+  }
+
+  .cyber-card:hover {
+  }
+
+  .cyberpunk-input {
+    background-color: rgba(0, 0, 0, 0.5); /* Dark, slightly transparent background */
+    border: 1px solid var(--neon-blue);
+    color: #ffffff; /* White text for visibility */
+    padding: 0.5rem 0.75rem;
+    border-radius: 0.25rem;
+    font-family: 'Chakra Petch', sans-serif;
+  }
+
+  .cyberpunk-input:focus {
+    outline: none;
+    border-color: var(--neon-pink);
+    box-shadow: 0 0 8px var(--neon-pink);
+  }
+
+  .cyberpunk-section-header {
+    border: 2px solid;
+    border-image: linear-gradient(to right, var(--neon-blue), var(--neon-pink)) 1;
+    padding: 0.5rem 1rem;
+    display: inline-block;
+    box-shadow: 0 0 10px rgba(var(--neon-blue-rgb), 0.5), 0 0 20px rgba(var(--neon-pink-rgb), 0.5);
+    margin-bottom: 2rem;
+  }
+
+  .neon-scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 40;
+    pointer-events: auto;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0 0.5rem;
+    font-size: 3.2rem;
+    font-family: 'Orbitron', 'Arial Black', Arial, sans-serif;
+    font-weight: bold;
+    color: #ff3131;
+    box-shadow: none;
+    text-shadow:
+      0 0 8px #ff3131,
+      0 0 16px #ff3131,
+      0 0 32px #ff3131,
+      0 0 48px #ff3131;
+    transition: color 0.2s, text-shadow 0.2s;
+    outline: none;
+  }
+  .neon-scroll-btn.right {
+    right: 1.2rem;
+  }
+  .neon-scroll-btn.left {
+    left: 1.2rem;
+  }
+  .neon-scroll-btn:hover, .neon-scroll-btn:focus {
+    color: #fff;
+    text-shadow:
+      0 0 16px #ff3131,
+      0 0 32px #ff3131,
+      0 0 64px #ff3131;
+  }
+
+  /* Header Add Meme button */
+  .neon-header-btn {
+    background: rgba(10, 0, 30, 0.68);
+    color: #fff;
+    border: 2.5px solid #00f6ff;
+    border-radius: 0.6em;
+    font-family: 'Orbitron', 'Share Tech Mono', Arial Black, sans-serif;
+    font-size: 1.18rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    box-shadow: 0 0 12px #00f6ff, 0 0 24px #00f6ff;
+    text-shadow: 0 0 8px #00f6ff, 0 0 16px #fff;
+    padding: 0.7em 2em;
+    margin: 0 0.2em;
+    transition: box-shadow 0.18s, color 0.18s, border-color 0.18s, background 0.18s, transform 0.12s;
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .neon-header-btn:hover, .neon-header-btn:focus {
+    color: #00f6ff;
+    background: rgba(0,246,255,0.13);
+    border-color: #00f6ff;
+    box-shadow: 0 0 32px #00f6ff, 0 0 64px #ff31a9, 0 0 16px #fff;
+    text-shadow: 0 0 16px #00f6ff, 0 0 32px #ff31a9;
+    transform: scale(1.06) rotate(-1deg);
+  }
+
+  /* Header Leaderboard link */
+  .neon-header-link {
+    background: none;
+    color: #ff31a9;
+    font-family: 'Orbitron', 'Share Tech Mono', Arial Black, sans-serif;
+    font-size: 1.18rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    text-shadow: 0 0 8px #ff31a9, 0 0 16px #fff;
+    padding: 0.7em 1.2em;
+    margin: 0 0.2em;
+    cursor: pointer;
+    transition: color 0.18s, text-shadow 0.18s, transform 0.12s, border-bottom 0.18s;
+    border-bottom: 2.5px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .neon-header-link:hover, .neon-header-link:focus {
+    color: #fff;
+    text-shadow: 0 0 16px #ff31a9, 0 0 32px #00f6ff;
+    border-bottom: 2.5px solid #ff31a9;
+    transform: scale(1.08);
+  }
+
+  /* Header Logout icon button */
+  .neon-header-icon-btn {
+    background: rgba(10, 0, 30, 0.68);
+    border: 2.5px solid #ff31a9;
+    border-radius: 50%;
+    width: 2.8em;
+    height: 2.8em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 16px #ff31a9, 0 0 32px #ff31a9;
+    transition: box-shadow 0.18s, border-color 0.18s, background 0.18s, transform 0.12s;
+    cursor: pointer;
+    outline: none;
+    margin-left: 0.2em;
+  }
+  .neon-header-icon-btn svg {
+    display: block;
+    stroke: #ff31a9;
+    filter: drop-shadow(0 0 6px #ff31a9) drop-shadow(0 0 12px #ff31a9);
+    transition: stroke 0.18s, filter 0.18s;
+  }
+  .neon-header-icon-btn:hover, .neon-header-icon-btn:focus {
+    background: rgba(255,49,169,0.13);
+    border-color: #ff31a9;
+    box-shadow: 0 0 36px #ff31a9, 0 0 72px #00f6ff, 0 0 24px #fff;
+    transform: scale(1.12) rotate(-3deg);
+  }
+  .neon-header-icon-btn:hover svg, .neon-header-icon-btn:focus svg {
+    stroke: #fff;
+    filter: drop-shadow(0 0 12px #ff31a9) drop-shadow(0 0 24px #00f6ff);
+  }
+}
+
+@layer utilities {
+  .drop-shadow-neon-pink {
+    filter: drop-shadow(0 0 4px var(--neon-pink)) drop-shadow(0 0 8px var(--neon-pink));
+  }
+  .drop-shadow-neon-blue {
+    filter: drop-shadow(0 0 4px var(--neon-blue)) drop-shadow(0 0 8px var(--neon-blue));
+  }
+  .font-rubik-glitch {
+    font-family: 'Rubik Glitch Static', cursive;
+  }
+  .memes-heading-font {
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 0.1em; /* Adjust as needed */
+  }
+}
+
+:root {
+  --neon-blue: #1289de; /* Darker, warmer blue with a subtle turquoise hint like in the image */
+  --neon-blue-rgb: 18, 137, 222;
+  --neon-pink: #ff4885;
+  --neon-pink-rgb: 255, 0, 255;
+  --neon-purple: #8A2BE2;
+  --neon-green: #00FF00;
+  --neon-red: #FF3131;
+  --neon-orange: #FF4500;
+  --cyber-black: #0D002A;
+  --cyber-gray: #1a1a1a;
+}
+
+/* No custom scrollbar styles, animations, or unnecessary media queries */
+
+/* Top Memes scrollable section styles */
+#top-memes-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: 1rem;
+  gap: 1.5rem;
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+  -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch;
+  transition: transform 0.5s cubic-bezier(0.4,2,0.6,1);
+}
+#top-memes-container::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome, Safari, Opera */
+}
+
+.top-memes-scroll-parent {
+  position: relative;
+  width: 100vw;
+  max-width: 100vw;
+  overflow-x: visible;
+  margin-left: calc(-50vw + 50%);
+  left: 0;
+}
+
+/* Remove previous blur overlays and add shadow overlays for Top Memes edges */
+.top-memes-blur-left, .top-memes-blur-right {
+  display: none !important;
+}
+
+.top-memes-shadow-left, .top-memes-shadow-right {
+  position: absolute;
+  top: 0;
+  width: 7rem;
+  height: 100%;
+  z-index: 35;
+  pointer-events: none;
+  transition: opacity 0.4s cubic-bezier(0.4,2,0.6,1);
+}
+.top-memes-shadow-left {
+  left: 0;
+  background: linear-gradient(to right, rgba(10,0,30,0.95) 70%, rgba(10,0,30,0.0) 100%);
+  box-shadow: 0 0 32px 8px #000a inset;
+}
+.top-memes-shadow-right {
+  right: 0;
+  background: linear-gradient(to left, rgba(10,0,30,0.95) 70%, rgba(10,0,30,0.0) 100%);
+  box-shadow: 0 0 32px 8px #000a inset;
+}
+
+/* Ensure memes are not cut off at the edges */
+#top-memes-container {
+  scroll-padding-left: 2rem;
+  scroll-padding-right: 2rem;
+}
+
+/* --- Cyberpunk/Futuristic Landing Page Effects --- */
+@keyframes neon-glow {
+  0%, 100% { text-shadow: 0 0 32px #00f6ff, 0 0 64px #00f6ff, 0 0 0 #fff; }
+  50% { text-shadow: 0 0 64px #00f6ff, 0 0 128px #00f6ff, 0 0 16px #fff; }
+}
+.animate-glow {
+  animation: neon-glow 2.2s infinite alternate;
+}
+
+/* Scanline overlay */
+.scanline-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0,255,255,0.04) 0px,
+    rgba(0,255,255,0.04) 1px,
+    transparent 2px,
+    transparent 6px
+  );
+  mix-blend-mode: lighten;
+  opacity: 0.7;
+  animation: scanline-move 6s linear infinite;
+}
+@keyframes scanline-move {
+  0% { background-position-y: 0; }
+  100% { background-position-y: 8px; }
+}
+
+/* Floating cyber particles */
+.cyber-particles {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 11;
+}
+.cyber-particle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.7;
+  filter: blur(1.5px) brightness(1.2);
+  animation: cyber-particle-float 8s linear infinite;
+}
+@keyframes cyber-particle-float {
+  0% { transform: translateY(0) scale(1); opacity: 0.7; }
+  50% { transform: translateY(-40px) scale(1.2); opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 0.7; }
+}
+
+/* Futuristic Get Started button */
+.get-started-btn {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 32px #00f6ff, 0 0 64px #ff31a9, 0 0 0 #fff;
+  border: 3.5px solid #00f6ff;
+  background: linear-gradient(90deg, #0ff 0%, #ff31a9 100%);
+  color: #0a0014;
+  border-radius: 0.45rem; /* Subtle rounded rectangle */
+  text-shadow: 0 0 8px #fff, 0 0 24px #00f6ff;
+  font-family: 'Orbitron', 'Share Tech Mono', 'Consolas', 'monospace';
+  font-weight: 900;
+  font-size: 2.2rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  transition: transform 0.15s, box-shadow 0.15s, background 0.3s, border-color 0.2s, color 0.2s, filter 0.2s;
+}
+.get-started-btn::before {
+  content: '';
+  position: absolute;
+  left: -60%;
+  top: 0;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(255,255,255,0.18) 0%, rgba(0,255,255,0.08) 100%);
+  transform: skewX(-24deg);
+  filter: blur(2px);
+  animation: get-started-shine 2.5s infinite linear;
+}
+@keyframes get-started-shine {
+  0% { left: -60%; }
+  100% { left: 120%; }
+}
+@keyframes get-started-flicker {
+  0%, 100% { filter: brightness(1) drop-shadow(0 0 8px #00f6ff); }
+  10% { filter: brightness(1.2) drop-shadow(0 0 16px #ff31a9); }
+  20% { filter: brightness(0.9) drop-shadow(0 0 24px #0ff); }
+  30% { filter: brightness(1.3) drop-shadow(0 0 32px #ff31a9); }
+  40% { filter: brightness(1) drop-shadow(0 0 8px #00f6ff); }
+  50% { filter: brightness(1.2) drop-shadow(0 0 24px #ff31a9); }
+  60% { filter: brightness(1) drop-shadow(0 0 8px #00f6ff); }
+  70% { filter: brightness(1.1) drop-shadow(0 0 16px #0ff); }
+  80% { filter: brightness(1.3) drop-shadow(0 0 32px #ff31a9); }
+  90% { filter: brightness(1) drop-shadow(0 0 8px #00f6ff); }
+}
+.get-started-btn:hover {
+  background: linear-gradient(90deg, #ff31a9 0%, #0ff 100%);
+  box-shadow: 0 0 96px #ff31a9, 0 0 128px #00f6ff, 0 0 32px #fff;
+  border-color: #ff31a9;
+  color: #fff;
+  transform: scale(1.07) rotate(-1.5deg);
+  animation: get-started-flicker 0.7s linear 1;
+  filter: brightness(1.15) drop-shadow(0 0 16px #ff31a9);
+}
+
+/* --- Cyberpunk Leaderboard Header Style --- */
+.cyberpunk-leaderboard-header {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Press Start 2P', 'Orbitron', 'Share Tech Mono', 'Audiowide', Arial Black, sans-serif;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: #b800ff;
+  background: rgba(10, 0, 30, 0.82);
+  border: 3px solid;
+  border-image: linear-gradient(90deg, #00f6ff 0%, #b800ff 50%, #ff31a9 100%) 1;
+  box-shadow:
+    0 0 16px 3px #b800ff,
+    0 0 32px 6px #00f6ff,
+    0 0 6px 1px #ff31a9,
+    0 0 0 3px rgba(0,0,0,0.18) inset;
+  text-shadow:
+    0 0 6px #b800ff,
+    0 0 12px #00f6ff,
+    0 0 18px #ff31a9,
+    0 0 1px #fff;
+  padding: 0.32em 1.1em;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 0.28em;
+  transition: box-shadow 0.2s, border-color 0.2s;
+  position: relative;
+  z-index: 10;
+  margin-bottom: 1.2rem;
+  margin-top: 0.5rem;
+  min-width: unset;
+  max-width: 90vw;
+  text-align: center;
+  overflow: visible;
+  animation: neon-glow 2.2s infinite alternate;
+  width: auto;
+}
+
+@media (max-width: 600px) {
+  .cyberpunk-leaderboard-header {
+    font-size: 0.9rem;
+    padding: 0.22em 0.5em;
+    border-radius: 0.18em;
+  }
+} 
